@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF Report</title>
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container, .result-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 1%;
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #00796b;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        input[type="date"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            table-layout: fixed; /* Ensures table columns are of equal width */
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 5px;
+            font-size: 12px;
+            text-align: center;
+            word-wrap: break-word; /* Ensures content wraps within the cell */
+        }
+
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #005f56;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .download-button {
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align buttons to the right */
+            margin-bottom: 20px; /* Optional: Add some spacing between button container and other content */
+        }
+
+        .download-button, .home-button, .logout-button {
+            margin-left: 10px; 
+        }
+        table{
+            height: 75px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate PDF Report</h1>
+        <form id="generatePdf" method="POST" onsubmit="return setFormAction()">
+            {% csrf_token %}
+            <input type="hidden" id="user_id_input" name="user_id" value="">
+            <div class="form-container">
+                <label for="From_Date">From Date:</label>
+                <input type="date" name="From_Date" id="From_Date" value="{{ from_date }}">
+                <label for="To_Date">To Date:</label>
+                <input type="date" name="To_Date" id="To_Date" value="{{ to_date }}">
+            </div>
+            <div style="margin-top: 15px;">
+                <label for="Intersection-Name">Intersection Name:</label>
+                <select style="text-align: center;" id="intersectionList" name="Intersection_Name">
+                    {% for item in intersection_list %}
+                        <option value="{{ item.value }}" {% if item.value == selected_intersection %} selected {% endif %}>
+                            {{ item.text }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit">Generate report</button>
+        </form>
+    </div>
+
+    <div class="result-container">
+        <div id="table-container" style="display: {% if road_info %} block {% else %} none {% endif %};" class="mx-4 my-4">
+            <h2 style="text-align: center;">Sessions</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Session Date</th>
+                            <th>Session Day</th>
+                            <th>Session</th>
+                            <th>Session Time</th>
+                            <th>Intersection Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in road_info %}
+                        <tr>
+                            <td>{{ row.sessionDate }}</td>
+                            <td>{{ row.sessionDay }}</td>
+                            <td>{{ row.session }}</td>
+                            <td>{{ row.sessionTime }}</td>
+                            <td>{{ row.intersectionType }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="result-container">
+                <h2 style="margin-top:50px; text-align: center;">RESULT</h2>
+                {{ result }}
+            </div>
+
+            <div id="graph-container">
+                <h2 style="margin-top: 50px; text-align: center;">Volume to Capacity Ratio Graph</h2>
+                {{ graph|safe }}
+            </div>
+            <div id="graph-container">
+                <h2 style="margin-top: 50px; text-align: center;">Vehicle Composition Graph</h2>
+                {{ graph1|safe }}
+            </div>
+            <div class="button-container">
+                <button id="download-button" class="download-button" onclick="downloadPDF()">Download as PDF</button>
+                <button class="home-button">Home</button>
+                <button class="logout-button">Log Out</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdown = document.getElementById("intersectionList");
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');    
+            document.getElementById('user_id_input').value = userId;
+
+            fetch(`../intersection_list/?user_id=${userId}`) // Replace with your actual backend URL
+                .then(response => response.json())
+                .then(data => {
+                    const selectedIntersection = "{{ selected_intersection }}";
+                    data['dropdown_data'].forEach(item => {
+                        const option = document.createElement("option");
+                        option.value = item.value;
+                        option.text = item.text;
+                        if (item.value == selectedIntersection) {
+                            option.selected = true;
+                        }
+                        dropdown.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        });
+        
+        function setFormAction() {
+            const dropdown = document.getElementById("intersectionList").value;
+            const userId = document.getElementById('user_id_input').value;
+            const form = document.getElementById("generatePdf");
+            form.action = `{% url 'generate_pdf' %}?user_id=${userId}`;
+            return true;
+        }
+
+        // JavaScript to handle PDF download
+        function downloadPDF() {
+            const downloadButton = document.getElementById("download-button");
+            downloadButton.style.display = "none";
+
+            const element = document.body;
+
+            const opt = {
+                margin:       0.5,
+                filename:     'analysis_result.pdf',
+                image:        { type: 'jpeg', quality: 2.0 },
+                html2canvas:  { scale: 1, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'A3', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                downloadButton.style.display = "block";
+            });
+        }
+    </script>
+</body>
+</html>

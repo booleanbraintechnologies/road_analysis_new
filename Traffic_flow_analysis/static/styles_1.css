@@ -1,0 +1,496 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    /* background-image: url('traffic.svg'); */
+    background-color: #FFFFFF;
+    background-position: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .container {
+    width: auto;
+    height: auto;
+    /* padding-top: 25px; */
+    /* padding-bottom: 25px; */
+   /* background-color: rgba(32, 32, 44); /* Second, Third container */
+    border-radius: 20px;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+  .container table
+  {
+     border-collapse: collapse;
+    border-spacing: 0;
+    /* border-radius: 12px 12px 0 0 ; */
+    /* overflow: hidden; */
+    /* box-shadow: 0 2px 12px rgba(32, 32, 44,.3); */
+  }
+  
+  .title {
+    text-align: center;
+    color: #fff;
+  }
+
+  caption {
+    color: white; /* Set caption text color to white */
+  }
+  .form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+    
+    /* display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh; */
+    /* background:black; */
+
+  }
+  :root {
+    --clr-neon: hsl(183, 100%, 54%);
+    --clr-bg: hsl(141, 21%, 16%);
+  }
+
+
+  input[type="text"] {
+    width: 90%; 
+    background:rgb(230, 241, 220);
+  }
+  th {
+    width: 4%;
+  }
+  select{
+    width: 100%;
+  }
+  .continue-button {
+    padding: 10px 20px;
+    background-color: #00BFA6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size:25px;
+      height:80px;
+      width:180px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor: pointer;
+      font-family: "Balsamiq Sans", cursive;
+      text-decoration: none;
+      color: var(--clr-neon);
+      border: var(--clr-neon) 3px solid;
+      background-color:transparent;
+      border-radius: 0.25em;
+      /* text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+      box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+      transition:all 0.5s; */
+
+
+  }
+  
+  
+    .continue-button:hover {
+      /* background-color: #0056b3; */
+      background-color: teal;
+      color: #fff;
+      transition: ease-out 1s;
+    }
+  
+
+  .result-text {
+    text-align: center;
+    margin-top: 35px;
+    color: #fff;
+    font-size: x-large;
+}
+
+.container2 {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container2 {
+  width: 100%;
+  text-align: center;
+  color:#00BFA6;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-container2 input[type="text"],
+.form-container2 input[type="date"],
+.form-container2 select {
+  width: calc(100% - 24px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #fffafa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #F0F0F0;
+  color: rgb(9, 9, 9);
+}
+
+.form-container2 input[type="text"]:nth-of-type(1) {
+  width: calc(50% - 12px); /* Decreased the width of "Intersection Name" */
+}
+
+.form-container2 input[type="text"]:nth-of-type(2) {
+  width: calc(50% - 12px); /* Decreased the width of "City, State" */
+}
+
+.date-day-container,
+.session-road-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.date-day-container input[type="date"],
+.date-day-container input[type="text"] {
+  width: calc(50% - 10px); /* Adjusted to align the date and day inputs */
+}
+
+.session-road-container select {
+  width: calc(50% - 10px);
+}
+
+.button-container {
+  text-align: center;
+  width: 100%;
+}
+
+.next-button,
+.next-button1 {
+  padding: 10px 20px;
+  background-color: #00BFA6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: ease-out 1s;
+
+}
+
+.next-button:hover,
+.next-button1:hover {
+  background-color: teal;
+}
+
+/* table color */
+
+.th-route{
+  background: #76a3d3;
+}
+.th-toward{
+  background: rgb(242, 146, 111);
+}
+.th-from{
+  background: lightgreen;
+}
+.td-space{
+  background-color:antiquewhite;
+}
+.th-row{
+  background: #76a3d3;
+}
+th
+{
+  background-color:#00BFA6;
+ color: rgb(255, 250, 250);
+ font-family: 'Times New Roman', Times, serif;
+ font-size: large;
+ font-weight:bold;
+ font-display:initial;
+}
+th,td
+{
+  padding: 10px 15px;
+}
+
+tr:nth-child(odd)
+{
+ background-color: #4BAC90;
+ color:white;
+}
+tr:nth-child(even)
+{
+ background-color:   #3b7e68;
+ ;
+ color:white;
+}
+th{
+  text-decoration: underline;
+}
+
+
+/* For responsiveness */
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+
+
+  /* For responsiveness */
+  @media only screen and (max-width: 768px) {
+    .container {
+      width: 50%;
+    }
+  }
+  .input-container {
+    display: flex;
+    align-items: center;
+}
+.minus-btn {
+  background-color: rgb(203, 22, 22);
+  color: white;
+  border: none;
+  padding: 5px 8.5px;
+  /* border-radius: 4px; */
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.plus-btn {
+  background-color: rgb(15, 155, 15);
+  color: white;
+  border: none;
+  padding: 5px 8.5px;
+  /* border-radius: 4px; */
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.input-container input {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.input-container button {
+    cursor: pointer;
+}
+
+caption h2 {
+  color: #fff;
+  /* white-space: nowrap; */
+  /* position: absolute; */
+  /* top: -2%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); Center the element horizontally and vertically */
+  /* font-size: 1.8rem;
+  font-family: sans-serif; */
+  letter-spacing: 0.1em;
+  font-size: 50px;
+  color: #00BFA6;  
+  text-align: center;
+  text-shadow: #20202C;
+}
+/* @keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+      text-shadow:
+      0 0 7px #fff,
+  0 0 10px #fff,
+  0 0 21px #fff,
+  0 0 42px rgb(0, 128, 128),
+  0 0 82px rgb(0, 128, 128),
+  0 0 92px rgb(0, 128, 128),
+  0 0 102px rgb(0, 128, 128),
+  0 0 151px rgb(0, 128, 128);
+  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+}
+h2 {
+  font-size: 4.2rem;
+  animation: flicker 1.5s infinite alternate;     
+} */
+
+/* caption h2:hover {
+  transition: 0.3s;
+  transform: scale(1.1) translate(-50%, -50%);
+  text-shadow: 1px -1px 0 grey, 1px -2px 0 grey, 1px -3px 0 grey,
+    1px -4px 0 grey, 1px -5px 0 grey, 1px -6px 0 grey, 1px -7px 0 grey,
+    1px -8px 0 grey, 5px -13px 15px black, 5px -13px 25px #808080;
+} */
+
+
+
+td select {
+  width: 100%; /* Make the select element fill the entire width of the table cell */
+  padding: 8px; /* Add some padding for better appearance */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add rounded corners */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  font-family: Arial, sans-serif; /* Set font family */
+  background-color: #2b2b2be2;
+  color:#ffffff;
+}
+
+/* Style for option elements */
+td select option {
+  font-family: Arial, sans-serif; /* Set font family */
+}
+
+
+select {
+  font-weight: bold;
+}
+/* styles_1.css */
+
+/* Styling for input fields */
+input[type="text"] {
+  width: 80%; /* Set the width to 100% of the container */
+  padding: 8px; /* Add some padding for better appearance */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add some border radius for rounded corners */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  font-family: Arial, sans-serif; /* Set the font family */
+  margin: 0 5px;
+}
+
+/* Styling for select elements */
+select {
+  width: 100%; /* Set the width to 100% of the container */
+  padding: 8px; /* Add some padding for better appearance */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add some border radius for rounded corners */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  font-family: Arial, sans-serif; /* Set the font family */
+  font-weight: bold; /* Make the text bold */
+}
+.input-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container1 input[type="text"] {
+  width: 25px;
+  height: 15px;
+  text-align: center;
+  margin: 0 2px;
+}
+
+.input-container1 button {
+  width: 12px;
+  height: 15px;
+  padding: 0;
+  margin: 0 2px;
+}
+.padding th,td{
+  padding: 15px 2.5px;
+}
+.minus-btn1 {
+  background-color: rgb(225, 60, 60);
+  color: white;
+  border: none;
+  padding: 5px 8.5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.plus-btn1 {
+  background-color: rgb(29, 154, 4);
+  color: white;
+  border: none;
+  padding: 5px 8.5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#drain-type-select {
+  width: auto; /* Adjusts width automatically based on the content */
+  min-width: 300px; /* Minimum width to ensure the text is visible */
+  max-width: 100%; /* Ensures it doesn't overflow the parent container */
+}
+
+
+.next-button1 {
+  background-color: #00BFA6;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.next-button1:hover {
+  background-color: teal;
+}
+.container2::before {
+  content: "";
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  top: -10%;
+  right: 70%;
+  transform: translateY(-50%);
+  background-image: linear-gradient(-45deg, teal 0%, #00BFA6 100%);
+  transition: 1.8s ease-in-out;
+  border-radius: 50%;
+  z-index: -1;
+}
+.continue-button
+{
+  background-color: #00BFA6;
+  border: none;
+  color: white;
+}
+
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+ table
+ {
+   
+    background-color: rgb(255, 255, 255);
+    border-collapse: collapse;
+    border-radius: 10px;
+  
+ }
+  
+   th,
+  td {
+    border: 1px solid white; /* Set border color to white */
+    /* padding: 8px; */
+    text-align: center;
+  }
+  

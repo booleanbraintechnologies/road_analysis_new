@@ -1,0 +1,747 @@
+<!-- 3.html -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Flow Analysis</title>
+    <link rel="stylesheet" href="../static/styles_1.css">
+    <style>
+      .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed from center to flex-start */
+            height: 100vh;
+            padding-top: 20px; /* Added padding to ensure space at the top */
+            /* background-color: #f0f0f0; */
+        }
+        .form-container {
+            width: 90%;
+            max-width: 1200px;
+        }
+        table {
+        width: 100%;
+        border-collapse: separate; /* Use separate to allow border-radius to work on corners */
+        background-color: #ffffff; /* Adjust the background color of the table */
+        border: 1px solid #ccc;
+        border-radius: 20px; /* Add rounded corners to the table */
+        overflow: hidden;
+        border-spacing: 0; /* Ensure no spacing between borders */
+    }
+
+        /* table, th, td {
+            border: 1px solid #ccc;
+        } */
+        th, td {
+            padding: 10px;
+            text-align: center;
+            
+        }
+        th {
+            background-color: #00BFA6;
+        }
+        caption h2 {
+            margin: 0;
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+        }
+        .width-input {
+            display: none;
+        }
+        .width-input:visible {
+            display: block;
+           
+        }
+        select, input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .custom-input {
+        display: none;
+        margin-top: 5px;
+        width: 100%; /* Ensure the input field takes the full width of the table cell */
+        padding: 5px; /* Add some padding for better appearance */
+        box-sizing: border-box; /* Ensure padding doesn't affect the width */
+    }
+
+
+        /* th:first-child {
+        border-top-left-radius: 20px;
+    }
+    th:last-child {
+        border-top-right-radius: 20px;
+    }
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 20px;
+    }
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 20px;
+    } */
+    </style>
+    <script>
+        function toggleWidthInput(selectElement, inputId) {
+            var inputElement = document.getElementById(inputId);
+            if (selectElement.value === "YES" || selectElement.value === "TWO") {
+                inputElement.style.display = 'block';
+            } else {
+                inputElement.style.display = 'none';
+            }
+        }
+        function toggleAdditionalDropdown(selectElement, dropdownId) {
+            var dropdownElement = document.getElementById(dropdownId);
+            if (selectElement.value === "YES") {
+                dropdownElement.style.display = 'block';
+            } else {
+                dropdownElement.style.display = 'none';
+            }
+        }
+        function toggleAdditionalDropdown(selectElement, dropdownId) {
+            var additionalDropdown = document.getElementById(dropdownId);
+            if (selectElement.value === 'YES') {
+                additionalDropdown.style.display = 'block'; // Show the additional dropdown
+            } else {
+                additionalDropdown.style.display = 'none'; // Hide the additional dropdown
+            }
+        }
+
+
+        function toggleCustomInput(selectElement) {
+        var customInput = selectElement.nextElementSibling;
+        if (selectElement.value === "CUSTOM") {
+            customInput.style.display = 'block';
+        } else {
+            customInput.style.display = 'none';
+        }
+    }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form>
+              <div>
+                <table style= "overflow-y:scroll;">
+                    <caption><h2>Three Roads INFO</h2></caption>
+                    <tr style="border-radius: 10px;">
+                        <th rowspan="2" style="border-top-left-radius: 20px;"></th>
+                        <th colspan="2">Route A</th>
+                        <th colspan="2">Route B</th>
+                        <th colspan="2" style="border-top-right-radius: 20px;">Route C</th>
+                    </tr>
+                    <tr>
+                        <th>Towards</th>
+                        <th>From</th>
+                        <th>Towards</th>
+                        <th>From</th>
+                        <th>Towards</th>
+                        <th>From</th>
+                    </tr>
+                    <tr style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">
+                        <td>Angle</td>
+                        
+                        <td colspan="3">
+                            <div class="input-container">
+                                <input type="text" name="Angle1" style="margin-left:55px; width:68%;">
+                            </div>
+                        </td>
+                        <td colspan="3">
+                            <div class="input-container">
+                                <input type="text" name="Angle2" style="margin-left:55px; width:68%;">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">One way or Both way</td>
+                        <td colspan="2">
+                            <select name="One-Both-1" onchange="toggleWidthInput(this, 'width-A')">
+                                <option value="0">Select</option>
+                                <option value="ONE">One way</option>
+                                <option value="TWO">Two Way</option>
+                            </select>
+                            <input type="text" id="width-A" name="one-way-two-way-1" class="width-input additional"  style="margin-top: 5px;"   placeholder="Number Of Lanes">
+                        </td>
+                        <td colspan="2">
+                            <select name="One-Both-2" onchange="toggleWidthInput(this, 'width-B')">
+                                <option value="0">Select</option>
+                                <option value="ONE">One way</option>
+                                <option value="TWO">Two Way</option>
+                            </select>
+                            <input type="text" id="width-B" name="one-way-two-way-2" class="width-input additional"   style="margin-top: 5px;"     placeholder="Number Of Lanes">
+                        </td>
+                        <td colspan="2">
+                            <select name="One-Both-3" onchange="toggleWidthInput(this, 'width-C')">
+                                <option value="0">Select</option>
+                                <option value="ONE">One way</option>
+                                <option value="TWO">Two Way</option>
+                            </select>
+                            <input type="text" id="width-C" name="one-way-two-way-3" class="width-input additional"  style="margin-top: 5px;"  placeholder="Number Of Lanes">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Cycle Lane</td>
+                        <td>
+                            <select name="Cycle-lane-1" onchange="toggleWidthInput(this, 'width-1')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-1" name="Cycle-lane-width-1" class="width-input"    style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Cycle-lane-2" onchange="toggleWidthInput(this, 'width-2')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-2" name="Cycle-lane-width-2" class="width-input" style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Cycle-lane-3" onchange="toggleWidthInput(this, 'width-3')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-3" name="Cycle-lane-width-3" class="width-input" style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Cycle-lane-4" onchange="toggleWidthInput(this, 'width-4')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-4" name="Cycle-lane-width-4" class="width-input"  style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Cycle-lane-5" onchange="toggleWidthInput(this, 'width-5')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-5" name="Cycle-lane-width-5" class="width-input"   style="margin-top: 5px;"   placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Cycle-lane-6" onchange="toggleWidthInput(this, 'width-6')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-6" name="Cycle-lane-width-6" class="width-input"   style="margin-top: 5px;"    placeholder="Width">
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Width of the road including divider/median</td>
+                        <td><input type="text" name="Width-including-divider-1"></td>
+                        <td><input type="text" name="Width-including-divider-2"></td>
+                        <td><input type="text" name="Width-including-divider-3"></td>
+                        <td><input type="text" name="Width-including-divider-4"></td>
+                        <td><input type="text" name="Width-including-divider-5"></td>
+                        <td><input type="text" name="Width-including-divider-6"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Median</td>
+                        <td>
+                            <select name="Median-1" onchange="toggleWidthInput(this, 'width-a')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-a" name="Median-width-1" class="width-input"   style="margin-top: 5px;"        placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Median-2" onchange="toggleWidthInput(this, 'width-b')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-b" name="Median-width-2" class="width-input"  style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Median-3" onchange="toggleWidthInput(this, 'width-c')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-c" name="Median-width-3" class="width-input"  style="margin-top: 5px;"      placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Median-4" onchange="toggleWidthInput(this, 'width-d')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-d" name="Median-width-4" class="width-input"   style="margin-top: 5px;"     placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Median-5" onchange="toggleWidthInput(this, 'width-e')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-e" name="Median-width-5" class="width-input"   style="margin-top: 5px;"    placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Median-6" onchange="toggleWidthInput(this, 'width-f')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-f" name="Median-width-6" class="width-input"    style="margin-top: 5px;"         placeholder="Width">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">StreetLights</td>
+                        <td>
+                            <select name="Streetlights-on-other-sides" onchange="toggleAdditionalDropdown(this, 'dropdown-1')"> 
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                                
+                            </select>
+                            <select id="dropdown-1" class="additional-dropdown" style="display: none; margin-top: 5px;">
+                                <option value="0">Select </option>
+                                <option value="Median">Median</option>
+                                <option value="Sides">Sides</option>
+                                <option value="BOTH">Both</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Streetlights-on-other-sides" onchange="toggleAdditionalDropdown(this, 'dropdown-2')"> 
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <select id="dropdown-2" class="additional-dropdown" style="display: none; margin-top: 5px;">
+                                <option value="0">Select </option>
+                                <option value="Median">Median</option>
+                                <option value="Sides">Sides</option>
+                                <option value="BOTH">Both</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Streetlights-on-other-sides" onchange="toggleAdditionalDropdown(this, 'dropdown-3')"> 
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <select id="dropdown-3" class="additional-dropdown" style="display: none; margin-top: 5px;">
+                                <option value="0">Select </option>
+                                <option value="Median">Median</option>
+                                <option value="Sides">Sides</option>
+                                <option value="BOTH">Both</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Streetlights-on-other-sides" onchange="toggleAdditionalDropdown(this, 'dropdown-4')"> 
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <select id="dropdown-4" class="additional-dropdown" style="display: none; margin-top: 5px;">
+                                <option value="0">Select </option>
+                                <option value="Median">Median</option>
+                                <option value="Sides">Sides</option>
+                                <option value="BOTH">Both</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Streetlights-on-other-sides" onchange="toggleAdditionalDropdown(this, 'dropdown-5')"> 
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <select id="dropdown-5" class="additional-dropdown" style="display: none; margin-top: 5px;">
+                                <option value="0">Select </option>
+                                <option value="Median">Median</option>
+                                <option value="Sides">Sides</option>
+                                <option value="BOTH">Both</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Streetlights-on-other-sides" onchange="toggleAdditionalDropdown(this, 'dropdown-6')"> 
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <select id="dropdown-6" class="additional-dropdown" style="display: none; margin-top: 5px;">
+                                <option value="0">Select </option>
+                                <option value="Median">Median</option>
+                                <option value="Sides">Sides</option>
+                                <option value="BOTH">Both</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="Service-A-1" style="display: none;">
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Width of Service Road</td>
+                        <td><input type="text" name="Service-Width-1"></td>
+                        <td><input type="text" name="Service-Width-2"></td>
+                        <td><input type="text" name="Service-Width-3"></td>
+                        <td><input type="text" name="Service-Width-4"></td>
+                        <td><input type="text" name="Service-Width-5"></td>
+                        <td><input type="text" name="Service-Width-6"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Foot path Width</td>
+                        <td>
+                            <select name="Footpath-1" onchange="toggleWidthInput(this, 'width-g')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-g" name="Footpath-width-1" class="width-input" style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Footpath-2" onchange="toggleWidthInput(this, 'width-h')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-h" name="Footpath-width-2" class="width-input"  style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Footpath-3" onchange="toggleWidthInput(this, 'width-i')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-i" name="Footpath-width-3" class="width-input" style="margin-top: 5px;"  placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Footpath-4" onchange="toggleWidthInput(this, 'width-j')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-j" name="Footpath-width-4" class="width-input"  style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Footpath-5" onchange="toggleWidthInput(this, 'width-k')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-k" name="Footpath-width-5" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="Footpath-6" onchange="toggleWidthInput(this, 'width-l')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="width-l" name="Footpath-width-6" class="width-input"  style="margin-top: 5px;"   placeholder="Width">
+                        </td>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Drain Type</td>
+                            <td>
+                              <select name="Drain-type">
+                                <option value="0">Select</option>
+                                <option value="UNDER">Under footpath</option>
+                                <option value="OPEN">Beside footpath-Open</option>
+                                <option value="CLOSE">Beside footpath-Closed</option>
+                              </select>
+                            </td>
+                            <td>
+                              <select name="Drain-type">
+                                <option value="0">Select</option>
+                                <option value="UNDER">Under footpath</option>
+                                <option value="OPEN">Beside footpath-Open</option>
+                                <option value="CLOSE">Beside footpath-Closed</option>
+                              </select>
+                            </td>
+                            <td>
+                              <select name="Drain-type">
+                                <option value="0">Select</option>
+                                <option value="UNDER">Under footpath</option>
+                                <option value="OPEN">Beside footpath-Open</option>
+                                <option value="CLOSE">Beside footpath-Closed</option>
+                              </select>
+                            </td>
+                            <td>
+                              <select name="Drain-type">
+                                <option value="0">Select</option>
+                                <option value="UNDER">Under footpath</option>
+                                <option value="OPEN">Beside footpath-Open</option>
+                                <option value="CLOSE">Beside footpath-Closed</option>
+                              </select>
+                            </td>
+                            <td>
+                              <select name="Drain-type">
+                                <option value="0">Select</option>
+                                <option value="UNDER">Under footpath</option>
+                                <option value="OPEN">Beside footpath-Open</option>
+                                <option value="CLOSE">Beside footpath-Closed</option>
+                              </select>
+                            </td>
+                            <td>
+                              <select name="Drain-type">
+                                <option value="0">Select</option>
+                                <option value="UNDER">Under footpath</option>
+                                <option value="OPEN">Beside footpath-Open</option>
+                                <option value="CLOSE">Beside footpath-Closed</option>
+                              </select>
+                            </td>
+                          </tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">On Street Parking</td>
+                        <td>
+                            <select name="On-street-parking-1" onchange="toggleWidthInput(this, 'street-parking-width-1')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="street-parking-width-1" name="Street-parking-width-1" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="On-street-parking-2" onchange="toggleWidthInput(this, 'street-parking-width-2')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="street-parking-width-2" name="Street-parking-width-2" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="On-street-parking-3" onchange="toggleWidthInput(this, 'street-parking-width-3')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="street-parking-width-3" name="Street-parking-width-3" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="On-street-parking-4" onchange="toggleWidthInput(this, 'street-parking-width-4')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="street-parking-width-4" name="Street-parking-width-4" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="On-street-parking-5" onchange="toggleWidthInput(this, 'street-parking-width-5')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="street-parking-width-5" name="Street-parking-width-5" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                        <td>
+                            <select name="On-street-parking-6" onchange="toggleWidthInput(this, 'street-parking-width-6')">
+                                <option value="0">Select</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
+                            </select>
+                            <input type="text" id="street-parking-width-6" name="Street-parking-width-6" class="width-input" style="margin-top: 5px;" placeholder="Width">
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Design Volume selection</td>
+                        <td colspan="2">
+                          <select name="Design Volume selection">
+                            <option value="0">Select</option>
+                            <option value="1">2 lane undivided</option>
+                            <option value="2">4 lane undivided</option>
+                            <option value="3">4 lane divided</option>
+                            <option value="4">6 lane divided</option>
+                            <option value="5">8 lane divided</option>
+                          </select>
+                        </td>
+                        <td colspan="2">
+                          <select name="Design Volume selection">
+                            <option value="0">Select</option>
+                            <option value="1">2 lane undivided</option>
+                            <option value="2">4 lane undivided</option>
+                            <option value="3">4 lane divided</option>
+                            <option value="4">6 lane divided</option>
+                            <option value="5">8 lane divided</option>
+                          </select>
+                        </td>
+                        <td colspan="2">
+                          <select name="Design Volume selection">
+                            <option value="0">Select</option>
+                            <option value="1">2 lane undivided</option>
+                            <option value="2">4 lane undivided</option>
+                            <option value="3">4 lane divided</option>
+                            <option value="4">6 lane divided</option>
+                            <option value="5">8 lane divided</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Road Condition</td>
+                        <td>
+                          <select name="road-condition">
+                            <option value="0">Select</option>
+                            <option value="POOR">Poor</option>
+                            <option value="ACCEPT">Acceptable</option>
+                            <option value="GOOD">Good</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="road-condition">
+                            <option value="0">Select</option>
+                            <option value="POOR">Poor</option>
+                            <option value="ACCEPT">Acceptable</option>
+                            <option value="GOOD">Good</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="road-condition">
+                            <option value="0">Select</option>
+                            <option value="POOR">Poor</option>
+                            <option value="ACCEPT">Acceptable</option>
+                            <option value="GOOD">Good</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="road-condition">
+                            <option value="0">Select</option>
+                            <option value="POOR">Poor</option>
+                            <option value="ACCEPT">Acceptable</option>
+                            <option value="GOOD">Good</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="road-condition">
+                            <option value="0">Select</option>
+                            <option value="POOR">Poor</option>
+                            <option value="ACCEPT">Acceptable</option>
+                            <option value="GOOD">Good</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="road-condition">
+                            <option value="0">Select</option>
+                            <option value="POOR">Poor</option>
+                            <option value="ACCEPT">Acceptable</option>
+                            <option value="GOOD">Good</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Road surface material</td>
+                        <td>
+                          <select name="Road-surface-material" onchange="toggleCustomInput(this)">
+                              <option value="0">Select</option>
+                              <option value="BITUMINOUS">Bituminous</option>
+                              <option value="CONCRETE">Concrete</option>
+                              <option value="CUSTOM">Custom</option>
+                          </select>
+                          <input type="text" class="custom-input" placeholder="Enter " />
+                      </td>
+                      <td>
+                        <select name="Road-surface-material" onchange="toggleCustomInput(this)">
+                            <option value="0">Select</option>
+                            <option value="BITUMINOUS">Bituminous</option>
+                            <option value="CONCRETE">Concrete</option>
+                            <option value="CUSTOM">Custom</option>
+                        </select>
+                        <input type="text" class="custom-input" placeholder="Enter " />
+                    </td>
+                    <td>
+                      <select name="Road-surface-material" onchange="toggleCustomInput(this)">
+                          <option value="0">Select</option>
+                          <option value="BITUMINOUS">Bituminous</option>
+                          <option value="CONCRETE">Concrete</option>
+                          <option value="CUSTOM">Custom</option>
+                      </select>
+                      <input type="text" class="custom-input" placeholder="Enter " />
+                  </td>
+                  <td>
+                    <select name="Road-surface-material" onchange="toggleCustomInput(this)">
+                        <option value="0">Select</option>
+                        <option value="BITUMINOUS">Bituminous</option>
+                        <option value="CONCRETE">Concrete</option>
+                        <option value="CUSTOM">Custom</option>
+                    </select>
+                    <input type="text" class="custom-input" placeholder="Enter " />
+                </td>
+                <td>
+                  <select name="Road-surface-material" onchange="toggleCustomInput(this)">
+                      <option value="0">Select</option>
+                      <option value="BITUMINOUS">Bituminous</option>
+                      <option value="CONCRETE">Concrete</option>
+                      <option value="CUSTOM">Custom</option>
+                  </select>
+                  <input type="text" class="custom-input" placeholder="Enter " />
+              </td>
+              <td>
+                <select name="Road-surface-material" onchange="toggleCustomInput(this)">
+                    <option value="0">Select</option>
+                    <option value="BITUMINOUS">Bituminous</option>
+                    <option value="CONCRETE">Concrete</option>
+                    <option value="CUSTOM">Custom</option>
+                </select>
+                <input type="text" class="custom-input" placeholder="Enter " />
+            </td>
+                      </tr>
+                      <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Air Pollution</td>
+                      <td colspan="8">
+                        <select name="Air-pollution">
+                          <option value="0" style="text-align: center">
+                           Select
+                          </option>
+                          <option value="LOW">Low</option>
+                          <option value="MODERATE">Moderate</option>
+                          <option value="SEVERE">Severe</option>
+                        </select>
+                      </td>
+                    </tr>
+            
+                    <tr>
+                      <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;" >Sound Pollution</td>
+                      <td colspan="8">
+                        <select name="Sound-pollution">
+                          <option value="0" style="text-align: center">
+                           Select
+                          </option>
+                          <option value="LOW">Low</option>
+                          <option value="MODERATE">Moderate</option>
+                          <option value="SEVERE">Severe</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center; border-bottom-left-radius: 20px;">Urban Expressway</td>
+                      <td colspan="8" style="border-bottom-right-radius: 20px">
+                        <select name="urban-express">
+                          <option value="0" style="text-align: center">
+                           Select
+                          </option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        
+                        </select>
+                      </td >
+                    </tr >
+                </table>
+                <div class="button-container"
+                style="  display: flex;
+                justify-content: center;">
+                  <button
+                    class="continue-button"
+                    type="button"
+                    onclick="loadNextContent('/Traffic_flow_analysis/templates/road_3_2.html')"
+                    style="border-radius: 30px;"
+                   
+                  >
+                    Continue
+                  </button>
+                </div>
+                <div style="display: none; margin-top: 15px; text-align: center;">
+                  <a id="scrollDownText" style="color: rgb(0, 0, 0); font-weight: bold;">Scroll Down &#9660</a>
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

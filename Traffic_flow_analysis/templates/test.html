@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+    <!-- Add your CSS and JavaScript files here -->
+     <link rel="stylesheet" href="../static/style_2.css">
+</head>
+<body>
+  <div class="container">
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>Enter The OTP</h3>
+          <p>Enter the OTP sent to your phone and get yourself logged in.</p>
+          <img src="../static/img/log.jpg" class="image" alt="Verify Identity">
+        </div>
+      </div>
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="{% url 'verify_otp_view' %}" method="post" class="verify-otp-form">
+            {% csrf_token %}
+            <input type="hidden" id="user_id_input" name="user_id" value="">
+            <h2 class="title">Enter OTP</h2>
+            <div class="input-field">
+              <i class="fas fa-key"></i>
+              <input type="text" name="otp" placeholder="Enter OTP" required>
+            </div>
+            <!-- Display error message if it exists -->
+            {% if msg %}
+              <div class="error-message">
+                <p>{{ msg }}</p>
+              </div>
+            {% endif %}
+            <input type="submit" value="Submit" class="btn solid">
+            <!-- <p class="resend-container">
+                <span class="resend-text">Didn't receive OTP? </span>
+                <button type="button" class="resend-btn">Resend</button>
+              </p> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <script src="../../../static/app.js"></script> -->
+  <!-- <script>
+    // Extract user_id from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user_id');
+    document.getElementById('user_id_input').value = userId;
+    console.log(userId)
+</script> -->
+
+{% if error %}
+  <script>
+      alert("{{ error }}");
+  </script>
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      // Extract user_id from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('user_id');
+      document.getElementById('user_id_input').value = userId;
+
+      // Handle form submission via AJAX
+      const form = document.getElementById('verifyOtpForm');
+      form.addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const formData = new FormData(form);
+          fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                  'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                  'Accept': 'application/json'
+              }
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.status === 'error') {
+                  alert(data.message); // Display the error message as an alert
+              } else {
+                  window.location.href = "{% url 'index' %}"; // Redirect to the index page
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('An error occurred. Please try again.');
+          });
+      });
+  });
+</script>
+</body>
+</html>

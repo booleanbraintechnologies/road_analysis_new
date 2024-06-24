@@ -1,0 +1,9 @@
+Django
+numpy
+pandas
+pillow
+plotly
+PyMySQL
+gunicorn
+whitenoise
+pymongo

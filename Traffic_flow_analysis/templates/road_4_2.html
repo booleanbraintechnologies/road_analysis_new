@@ -1,0 +1,297 @@
+<!-- 4_2html -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Flow Analysis</title>
+  <link rel="stylesheet" href="../static/styles_1.css">
+  <style>
+     .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed from center to flex-start */
+            height: 100vh;
+            padding-top: 20px; /* Added padding to ensure space at the top */
+        }
+        .form-container {
+            width: 90%;
+            max-width: 1200px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        /* table, th, td {
+            border: 1px solid #ccc;
+        } */
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #00BFA6;
+        }
+        caption h2 {
+            margin: 0;
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+        }
+        .width-input {
+            display: none;
+        }
+        .width-input:visible {
+            display: block;
+        }
+        select, input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        th:first-child {
+        border-top-left-radius: 20px;
+    }
+    th:last-child {
+        border-top-right-radius: 20px;
+    }
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 20px;
+    }
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container"  style="margin-right: 1180px;">
+  <div class="form-container">
+     <form>
+        <table style="background-color:rgb(255, 255, 255); border-radius:10px;  overflow-x: auto;">
+	        <caption><h2>Four Roads Vechicles INFO</h2></caption>
+            <tr>
+                <th style="border-top-left-radius: 20px;"></th>
+                <th>A-B</th>
+                <th>A-C</th>
+                <th>A-D</th>
+                <th>B-A</th>
+                <th>B-C</th>
+                <th>B-D</th>
+                <th>C-A</th>
+                <th>C-B</th>
+                <th>C-D</th>
+                <th>D-A</th>
+                <th>D-B</th>
+                <th style="border-top-right-radius: 20px;">D-C</th>
+            </tr>
+	
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Bicycle</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bicycle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+            </tr>
+            
+
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Cycle Rickshaw</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Cycle Rickshaw" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+
+            </tr>
+
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Two Wheeler</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Two Wheeler" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+
+            </tr>
+
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Auto rickshaws</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Auto rickshaws" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+
+            </tr>
+
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Small Car</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Small Car" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+
+            </tr>
+		
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Bus</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+            </tr>
+		
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Mini Bus</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Mini Bus" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+
+            </tr>
+		
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Light Commercial Vehicle</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Light Commercial Vehicle" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+            </tr>
+		
+            <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">2/3 axle truck</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="2/3 axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+            </tr>
+		
+            <tr> 
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Multi axle truck</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Multi axle truck" value="0"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+            </tr>
+		
+		    <tr>
+                <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Tractor trailer combination</td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+                <td><div class="input-container"><button type="button" onclick="minusbtn(this.nextElementSibling)" class="minus-btn">-</button><input type="text" name="Tractor trailer combination" value="0" style="width:50px"><button type="button" onclick="plusbtn(this.previousElementSibling)" class="plus-btn">+</button></div></td>
+            </tr>
+		
+        </table>
+        <div style="display: flex; align-items: center; gap: 20px; justify-content: center;">
+          <div class="button-container">
+            <a onclick="ria()"  class="continue-button" style="border-radius: 30px;">Road Information Analysis</a>
+        </div>
+          <div class="button-container">
+              <a onclick="analyze()"  class="continue-button" style="border-radius: 30px;">Traffic Flow Analysis</a>
+          </div>
+      </div>
+      <div style="display: none; align-items: center; gap: 20px; justify-content: center;">
+        <a class="result-text">Result Text</a>
+      </div>
+     </form>
+  </div>
+</div>
+
+</body>
+</html>
+     
+       
