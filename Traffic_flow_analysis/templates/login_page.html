@@ -4,581 +4,450 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <!-- <link rel="stylesheet" href="../static/style_2.css"> -->
-
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-input {
-  font-family: "Poppins", sans-serif;
-}
-
-.container {
-  position: relative;
-  width: 100%;
-  background-color: #fff;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.forms-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.signin-signup {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 75%;
-  width: 50%;
-  transition: 1s 0.7s ease-in-out;
-  display: grid;
-  grid-template-columns: 1fr;
-  z-index: 5;
-}
-
-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0rem 5rem;
-  transition: all 0.2s 0.7s;
-  overflow: hidden;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
-form.sign-up-form {
-  opacity: 0;
-  z-index: 1;
-}
-
-form.sign-in-form {
-  z-index: 2;
-}
-
-.title {
-  font-size: 2.2rem;
-  color: #444;
-  margin-bottom: 10px;
-}
-
-.input-field {
-  max-width: 380px;
-  width: 100%;
-  background-color: #f0f0f0;
-  margin: 10px 0;
-  height: 55px;
-  border-radius: 55px;
-  display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
-  position: relative;
-}
-
-.input-field i {
-  text-align: center;
-  line-height: 55px;
-  color: #acacac;
-  transition: 0.5s;
-  font-size: 1.1rem;
-}
-
-.input-field input {
-  background: none;
-  outline: none;
-  border: none;
-  line-height: 1;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.input-field input::placeholder {
-  color: #aaa;
-  font-weight: 500;
-}
-
-.social-text {
-  padding: 0.7rem 0;
-  font-size: 1rem;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-}
-
-.social-icon {
-  height: 46px;
-  width: 46px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.45rem;
-  color: #333;
-  border-radius: 50%;
-  border: 1px solid #333;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
-
-.social-icon:hover {
-  color: teal;
-  border-color: #4AAD91;
-}
-
-.btn {
-  width: 150px;
-  background-color: #00BFA6;
-  border: none;
-  outline: none;
-  height: 49px;
-  border-radius: 49px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.btn:hover {
-  background-color: teal;
-}
-
-.panels-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.container:before {
-  content: "";
-  position: absolute;
-  height: 2000px;
-  width: 2000px;
-  top: -10%;
-  right: 48%;
-  transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, teal 0%, #00BFA6 100%);
-  transition: 1.8s ease-in-out;
-  border-radius: 50%;
-  z-index: 6;
-}
-
-.image {
-  width: 100%;
-  transition: transform 1.1s ease-in-out;
-  transition-delay: 0.4s;
-}
-
-.panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-around;
-  text-align: center;
-  z-index: 6;
-}
-
-.left-panel {
-  pointer-events: all;
-  padding: 3rem 17% 2rem 12%;
-}
-
-.right-panel {
-  pointer-events: none;
-  padding: 3rem 12% 2rem 17%;
-}
-
-.panel .content {
-  color: #fff;
-  transition: transform 0.9s ease-in-out;
-  transition-delay: 0.6s;
-}
-
-.panel h3 {
-  font-weight: 600;
-  line-height: 1;
-  font-size: 1.5rem;
-}
-
-.panel p {
-  font-size: 0.95rem;
-  padding: 0.7rem 0;
-}
-
-.btn.transparent {
-  margin: 0;
-  background: none;
-  border: 2px solid #fff;
-  width: 130px;
-  height: 41px;
-  font-weight: 600;
-  font-size: 0.8rem;
-}
-
-.right-panel .image,
-.right-panel .content {
-  transform: translateX(800px);
-}
-
-/* ANIMATION */
-
-.container.sign-up-mode:before {
-  transform: translate(100%, -50%);
-  right: 52%;
-}
-
-.container.sign-up-mode .left-panel .image,
-.container.sign-up-mode .left-panel .content {
-  transform: translateX(-800px);
-}
-
-.container.sign-up-mode .signin-signup {
-  left: 25%;
-}
-
-.container.sign-up-mode form.sign-up-form {
-  opacity: 1;
-  z-index: 2;
-}
-
-.container.sign-up-mode form.sign-in-form {
-  opacity: 0;
-  z-index: 1;
-}
-
-.container.sign-up-mode .right-panel .image,
-.container.sign-up-mode .right-panel .content {
-  transform: translateX(0%);
-}
-
-.container.sign-up-mode .left-panel {
-  pointer-events: none;
-}
-
-.container.sign-up-mode .right-panel {
-  pointer-events: all;
-}
-
-@media (max-width: 870px) {
-  .container {
-    min-height: 800px;
-    height: 100vh;
-  }
-  .signin-signup {
-    width: 100%;
-    top: 95%;
-    transform: translate(-50%, -100%);
-    transition: 1s 0.8s ease-in-out;
-  }
-
-  .signin-signup,
-  .container.sign-up-mode .signin-signup {
-    left: 50%;
-  }
-
-  .panels-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-  }
-
-  .panel {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 2.5rem 8%;
-    grid-column: 1 / 2;
-  }
-
-  .right-panel {
-    grid-row: 3 / 4;
-  }
-
-  .left-panel {
-    grid-row: 1 / 2;
-  }
-
-  .image {
-    width: 200px;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.6s;
-  }
-
-  .panel .content {
-    padding-right: 15%;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.8s;
-  }
-
-  .panel h3 {
-    font-size: 1.2rem;
-  }
-
-  .panel p {
-    font-size: 0.7rem;
-    padding: 0.5rem 0;
-  }
-
-  .btn.transparent {
-    width: 110px;
-    height: 35px;
-    font-size: 0.7rem;
-  }
-
-  .container:before {
-    width: 1500px;
-    height: 1500px;
-    transform: translateX(-50%);
-    left: 30%;
-    bottom: 68%;
-    right: initial;
-    top: initial;
-    transition: 2s ease-in-out;
-  }
-
-  .container.sign-up-mode:before {
-    transform: translate(-50%, 100%);
-    bottom: 32%;
-    right: initial;
-  }
-
-  .container.sign-up-mode .left-panel .image,
-  .container.sign-up-mode .left-panel .content {
-    transform: translateY(-300px);
-  }
-
-  .container.sign-up-mode .right-panel .image,
-  .container.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
-  }
-
-  .right-panel .image,
-  .right-panel .content {
-    transform: translateY(300px);
-  }
-
-  .container.sign-up-mode .signin-signup {
-    top: 5%;
-    transform: translate(-50%, 0);
-  }
-}
-
-@media (max-width: 570px) {
-  form {
-    padding: 0 1.5rem;
-  }
-
-  .image {
-    display: none;
-  }
-  .panel .content {
-    padding: 0.5rem 1rem;
-  }
-  .container {
-    padding: 1.5rem;
-  }
-
-  .container:before {
-    bottom: 72%;
-    left: 50%;
-  }
-
-  .container.sign-up-mode:before {
-    bottom: 28%;
-    left: 50%;
-  }
-}
-.otp-form, .verify-otp-form {
-  padding: 2rem;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.otp-form .input-field, .verify-otp-form .input-field {
-  margin-bottom: 1.5rem;
-}
-.verify-otp-form {
-  padding: 2rem;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 5px
-}
-
-
-.resend-container {
-  display: flex;
-  align-items: center; /* Align items vertically */
-  margin-top: 3%;
-}
-
-.resend-text {
-  margin-right: 10px; /* Add spacing between text and button */
-  font-size: 0.9rem;
-}
-
-.resend-btn {
-  background-color: #fd5959;
-  border: none;
-  outline: none;
-  border-radius: 25px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  padding: 10px 20px; /* Adjust padding to decrease button size */
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.resend-btn:hover {
-  background-color: #00BFA6;
-}
-body {
-  position: relative; /* Ensures the positioning context is set for the pseudo-element */
-  min-height: 100vh; /* Minimum height for the body to ensure full page coverage */
-  margin: 0; /* Removes default margin */
-  padding: 0; /* Removes default padding */
-  overflow-x: hidden; /* Prevents horizontal scrollbar if content is too wide */
-}
-
-body::before {
-  content: ""; /* Necessary for pseudo-elements */
-  position: absolute; /* Positions relative to the nearest positioned ancestor (body in this case) */
-  top: 0; /* Aligns to the top */
-  left: 0; /* Aligns to the left */
-  width: 200px; /* Width of the blue curve */
-  height: 100%; /* Full height */
-  background: radial-gradient(circle at bottom left, teal 0%, transparent 70%); /* Blue radial gradient */
-  z-index: -1; /* Ensures it does not overlap any content */
-}
-body {
-    background-image: url('background-image.jpg'); /* Replace 'background-image.jpg' with your image path */
-    background-size: cover;
-    background-position: center;
-    height: 100vh; /* Ensure the background covers the entire viewport */
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: filter 0.3s ease; /* Smooth transition for the blur effect */
-  }
-
-  /* Styles for the loader container */
-  #loader-container {
-    display: none;
-  }
-
-  /* Loader styles */
-  .lds-ring {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
-
-  .lds-ring div {
-    box-sizing: border-box;
-    display: block;
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border: 8px solid #008080; /* Teal color */
-    border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #008080 transparent transparent transparent;
-  }
-
-  .lds-ring div:nth-child(1) {
-    animation-delay: -0.45s;
-  }
-
-  .lds-ring div:nth-child(2) {
-    animation-delay: -0.3s;
-  }
-
-  .lds-ring div:nth-child(3) {
-    animation-delay: -0.15s;
-  }
-
-  @keyframes lds-ring {
-    0% {
-      transform: rotate(0deg);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    100% {
-      transform: rotate(360deg);
+
+    body,
+    input {
+      font-family: "Poppins", sans-serif;
     }
-  }
+
+    .container {
+      position: relative;
+      width: 100%;
+      background-color: #fff;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .forms-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .signin-signup {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 75%;
+      width: 50%;
+      transition: 1s 0.7s ease-in-out;
+      display: grid;
+      grid-template-columns: 1fr;
+      z-index: 5;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0rem 5rem;
+      transition: all 0.2s 0.7s;
+      overflow: hidden;
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    form.sign-up-form {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    form.sign-in-form {
+      z-index: 2;
+    }
+
+    .title {
+      font-size: 2.2rem;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .input-field {
+      max-width: 380px;
+      width: 100%;
+      background-color: #f0f0f0;
+      margin: 10px 0;
+      height: 55px;
+      border-radius: 55px;
+      display: grid;
+      grid-template-columns: 15% 85%;
+      padding: 0 0.4rem;
+      position: relative;
+    }
+
+    .input-field i {
+      text-align: center;
+      line-height: 55px;
+      color: #acacac;
+      transition: 0.5s;
+      font-size: 1.1rem;
+    }
+
+    .input-field input {
+      background: none;
+      outline: none;
+      border: none;
+      line-height: 1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .input-field input::placeholder {
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .social-text {
+      padding: 0.7rem 0;
+      font-size: 1rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+    }
+
+    .social-icon {
+      height: 46px;
+      width: 46px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0.45rem;
+      color: #333;
+      border-radius: 50%;
+      border: 1px solid #333;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .social-icon:hover {
+      color: teal;
+      border-color: #4AAD91;
+    }
+
+    .btn {
+      width: 150px;
+      background-color: #00BFA6;
+      border: none;
+      outline: none;
+      height: 49px;
+      border-radius: 49px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .btn:hover {
+      background-color: teal;
+    }
+
+    .panels-container {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container:before {
+      content: "";
+      position: absolute;
+      height: 2000px;
+      width: 2000px;
+      top: -10%;
+      right: 48%;
+      transform: translateY(-50%);
+      background-image: linear-gradient(-45deg, teal 0%, #00BFA6 100%);
+      transition: 1.8s ease-in-out;
+      border-radius: 50%;
+      z-index: 6;
+    }
+
+    .image {
+      width: 100%;
+      transition: transform 1.1s ease-in-out;
+      transition-delay: 0.4s;
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-around;
+      text-align: center;
+      z-index: 6;
+    }
+
+    .left-panel {
+      pointer-events: all;
+      padding: 3rem 17% 2rem 12%;
+    }
+
+    .right-panel {
+      pointer-events: none;
+      padding: 3rem 12% 2rem 17%;
+    }
+
+    .panel .content {
+      color: #fff;
+      transition: transform 0.9s ease-in-out;
+      transition-delay: 0.6s;
+    }
+
+    .panel h3 {
+      font-weight: 600;
+      line-height: 1;
+      font-size: 1.5rem;
+    }
+
+    .panel p {
+      font-size: 0.95rem;
+      padding: 0.7rem 0;
+    }
+
+    .btn.transparent {
+      margin: 0;
+      background: none;
+      border: 2px solid #fff;
+      width: 130px;
+      height: 41px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .right-panel .image,
+    .right-panel .content {
+      transform: translateX(800px);
+    }
+
+    .container.sign-up-mode:before {
+      transform: translate(100%, -50%);
+      right: 52%;
+    }
+
+    .container.sign-up-mode .left-panel .image,
+    .container.sign-up-mode .left-panel .content {
+      transform: translateX(-800px);
+    }
+
+    .container.sign-up-mode .signin-signup {
+      left: 25%;
+    }
+
+    .container.sign-up-mode form.sign-up-form {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .container.sign-up-mode form.sign-in-form {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .container.sign-up-mode .right-panel .image,
+    .container.sign-up-mode .right-panel .content {
+      transform: translateX(0%);
+    }
+
+    .container.sign-up-mode .left-panel {
+      pointer-events: none;
+    }
+
+    .container.sign-up-mode .right-panel {
+      pointer-events: all;
+    }
+
+    @media (max-width: 870px) {
+      .container {
+        min-height: 800px;
+        height: 100vh;
+      }
+      .signin-signup {
+        width: 100%;
+        top: 95%;
+        transform: translate(-50%, -100%);
+        transition: 1s 0.8s ease-in-out;
+      }
+
+      .signin-signup,
+      .container.sign-up-mode .signin-signup {
+        left: 50%;
+      }
+
+      .panels-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+      }
+
+      .panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2.5rem 8%;
+        grid-column: 1 / 2;
+      }
+
+      .right-panel {
+        grid-row: 3 / 4;
+      }
+
+      .left-panel {
+        grid-row: 1 / 2;
+      }
+
+      .image {
+        width: 200px;
+        transition: transform 0.9s ease-in-out;
+        transition-delay: 0.6s;
+      }
+
+      .panel .content {
+        padding-right: 15%;
+        transition: transform 0.9s ease-in-out;
+        transition-delay: 0.8s;
+      }
+
+      .panel h3 {
+        font-size: 1.2rem;
+      }
+
+      .panel p {
+        font-size: 0.7rem;
+        padding: 0.5rem 0;
+      }
+
+      .btn.transparent {
+        width: 110px;
+        height: 35px;
+        font-size: 0.7rem;
+      }
+
+      .container:before {
+        width: 1500px;
+        height: 1500px;
+        transform: translateY(-50%);
+        left: 30%;
+        bottom: 68%;
+        right: initial;
+        top: initial;
+        transition: 2s ease-in-out;
+      }
+
+      .container.sign-up-mode:before {
+        transform: translate(-50%, 100%);
+        bottom: 32%;
+        right: initial;
+      }
+
+      .right-panel .image,
+      .right-panel .content {
+        transform: translateY(300px);
+      }
+
+      .container.sign-up-mode .right-panel .image,
+      .container.sign-up-mode .right-panel .content {
+        transform: translateY(0%);
+      }
+
+      .container.sign-up-mode .signin-signup {
+        top: 5%;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @media (max-width: 570px) {
+      form {
+        padding: 0 1.5rem;
+      }
+
+      .image {
+        display: none;
+      }
+
+      .panel .content {
+        padding: 0.5rem 1rem;
+      }
+
+      .container {
+        padding: 1.5rem;
+      }
+
+      .container:before {
+        bottom: 72%;
+        left: 50%;
+      }
+
+      .container.sign-up-mode:before {
+        bottom: 28%;
+        left: 50%;
+      }
+    }
+
+    .loader {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      color: black;
+      font-weight: bold;
+    }
+
   </style>
-  <title>Sign in & Sign up Form</title>
+  <title>Sign In & Sign Up Form</title>
 </head>
 <body>
   <div class="container">
+    <div class="loader" id="loader">Loading...</div>
     <div class="forms-container">
       <div class="signin-signup">
-        <!-- <form action="#" class="sign-in-form" onsubmit="return validateSignInForm()"> -->
-          <form id="sign-in-form" class="sign-in-form" onsubmit="sendEmailAndVerify(event)">
-            {% csrf_token %}
-          
+        <form action="#" class="sign-in-form" onsubmit="handleSubmit(event, 'login')">
           <h2 class="title">Sign in</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Email" id="signin-username" name="email" required />
+            <input type="text" placeholder="Username" required />
           </div>
-         
-          <input type="submit" value="Send OTP" class="btn solid" >  
-          <div id="loader-container">
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-        </div>
-    
-        
+          <!-- <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" required />
+          </div> -->
+          <button type="submit" class="btn">Send OTP</button>
         </form>
-
-        <form id="sign-up-form" action="{% url 'register_page' %}" method="post" class="sign-up-form" onsubmit="sendRegistration(event)">
-            {% csrf_token %}
+        <form action="#" class="sign-up-form" onsubmit="handleSubmit(event, 'signup')">
           <h2 class="title">Register</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" id="signup-username" name="username" required />
+            <input type="text" placeholder="Username" required />
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" id="signup-email" name="email" required />
+            <input type="email" placeholder="Email" required />
           </div>
           <div class="input-field">
             <i class="fas fa-phone"></i>
-            <input type="tel" placeholder="Phone Number" id="signup-phone" name="phone"  required>
+            <input type="number" placeholder="Phone Number" required />
           </div>
-          <input type="submit" class="btn" value="Send OTP" />
-          <!-- <p class="social-text">Or Sign up with social platforms</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-          </div> -->
+          <button type="submit" class="btn">Send OTP</button>
         </form>
       </div>
     </div>
@@ -586,131 +455,51 @@ body {
       <div class="panel left-panel">
         <div class="content">
           <h3>New here ?</h3>
-          <p>
-            Let's Fix your Traffic Problems with our New Technology. <br>
-            Just Signup and Lets get Started!!
-          </p>
-          <button class="btn transparent" id="sign-up-btn">
-            Sign up
-          </button>
+          <p> Let's Fix your Traffic Problems with our New Technology. <br> Just Signup and Lets get Started!! </p>
+          <button class="btn transparent" id="sign-up-btn">Sign up</button>
         </div>
-        <img src="../static/img/log.jpg" class="image" alt="" />
+        <img src="../static/img/log.svg" class="image" alt="" />
       </div>
       <div class="panel right-panel">
         <div class="content">
           <h3>One of us ?</h3>
-          <p>
-            Bingo!!! just Login and We are ready to Go🚀🚀
-          </p>
-          <button class="btn transparent" id="sign-in-btn">
-            Sign in
-          </button>
+          <p> Bingo!!! just Login and We are ready to Go🚀🚀 </p>
+          <button class="btn transparent" id="sign-in-btn">Sign in</button>
         </div>
-        <img src="../static/img/register.jpg" class="image" alt="" />
+        <img src="../static/img/log.svg" class="image" alt="" />
       </div>
     </div>
   </div>
-  <!-- <script src="../static/app.js"></script> -->
   <script>
-    function sendEmailAndVerify(event) {
-        event.preventDefault(); // Prevent form from submitting normally
-        const email = document.getElementById('signin-username').value;
-  
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "{% url 'signin_page' %}", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-  
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              const response = JSON.parse(xhr.responseText);
-              if (response.status === 'success') {
-                window.location.href = response.redirect_url + '?user_id=' + response.user_id;
-              } else {
-                alert(response.message);
-                window.location.href = "{% url 'login_page' %}";
-              }
-            } else {
-              alert("An error occurred. Please try again.");
-            }
-          }
-        };
-  
-        xhr.send(JSON.stringify({ email: email }));
-      }
-  
-      function sendRegistration(event) {
-        event.preventDefault(); // Prevent form from submitting normally
-        const username = document.getElementById('signup-username').value;
-        const email = document.getElementById('signup-email').value;
-        const phone = document.getElementById('signup-phone').value;
-  
-        if (!username || !email || !phone) {
-          alert('Please fill out all fields.');
-          return;
+    document.addEventListener('DOMContentLoaded', () => {
+      const signUpBtn = document.getElementById('sign-up-btn');
+      const signInBtn = document.getElementById('sign-in-btn');
+      const container = document.querySelector('.container');
+
+      signUpBtn.addEventListener('click', () => {
+        container.classList.add('sign-up-mode');
+      });
+
+      signInBtn.addEventListener('click', () => {
+        container.classList.remove('sign-up-mode');
+      });
+    });
+
+    function handleSubmit(event, formType) {
+      event.preventDefault();
+
+      const loader = document.getElementById('loader');
+      loader.style.display = 'block';
+
+      setTimeout(() => {
+        loader.style.display = 'none';
+        if (formType === 'login') {
+          window.location.href = "verify_otp.html";
+        } else if (formType === 'signup') {
+          window.location.href = "verify_otp.html";
         }
-  
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "{% url 'register_page' %}", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-  
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              // const response = JSON.parse(xhr.responseText);
-              const responseText = xhr.responseText;
-              console.log('Response Text:', responseText); // Log entire response text
-              const response = JSON.parse(responseText);
-              console.log('User ID:', response.user_id);              
-              if (response.status === 'success') {
-                // alert(response.user_id);
-                const redirectUrl = response.redirect_url + '?user_id=' + response.user_id;
-                // alert(redirectUrl)
-                window.location.href = redirectUrl;
-              } else {
-                alert(response.message);
-              }
-            } else {
-              alert("An error occurred. Please try again.");
-            }
-          }
-        };
-  
-        xhr.send(JSON.stringify({ username: username, email: email, phone: phone }));
-      }
-  
-      document.getElementById('sign-up-btn').addEventListener('click', () => {
-        document.querySelector('.container').classList.add('sign-up-mode');
-      });
-  
-      document.getElementById('sign-in-btn').addEventListener('click', () => {
-        document.querySelector('.container').classList.remove('sign-up-mode');
-      });
-      function sendEmailAndVerify(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Show loader and blur background
-    var loaderContainer = document.getElementById('loader-container');
-    var body = document.body;
-    loaderContainer.style.display = 'block';
-    // body.style.filter = 'blur(5px)'; // Apply blur effect
-
-    // Simulate sending email and verification
-    setTimeout(function() {
-      // Hide loader and remove blur effect after 3 seconds (simulating process completion)
-      loaderContainer.style.display = 'none';
-      body.style.filter = 'none'; // Remove blur effect
-      
-      // You can add your email sending and verification logic here
-      console.log("Email sent and verified.");
-    }, 2000);
-  }
-
-      
-    </script>
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
-
-
